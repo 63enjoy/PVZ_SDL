@@ -19,6 +19,11 @@ PVZ_ImageFile::PVZ_ImageFile(std::string file, SDL_Renderer* Renderer)
 	}
 	this->Error = PVZ_IMAGEFILE_NO_ERROR;
 }
+PVZ_ImageFile::~PVZ_ImageFile()
+{
+	SDL_FreeSurface(this->Surface);
+	SDL_DestroyTexture(this->Texture);
+}
 //PVZ_ImageFile End
 
 
@@ -83,10 +88,10 @@ void PVZ_Image::draw()
 		if (this->Texture != nullptr)
 		{
 			SDL_Rect rect;
-			rect.x = this->GetGlobalX();
-			rect.y = this->GetGlobalY();
-			rect.w = this->GetW();
-			rect.h = this->GetH();
+			rect.x = (int)this->GetGlobalX();
+			rect.y = (int)this->GetGlobalY();
+			rect.w = (int)this->GetW();
+			rect.h = (int)this->GetH();
 			SDL_RenderCopy(this->Renderer, this->Texture, nullptr, &rect);
 		}
 		

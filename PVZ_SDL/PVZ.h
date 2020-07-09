@@ -9,6 +9,7 @@ class PVZ_ImageFile
 {
 public:
 	PVZ_ImageFile(std::string, SDL_Renderer*);
+	~PVZ_ImageFile();
 	int GetError()
 	{
 		return this->Error;
@@ -114,6 +115,7 @@ public:
 	{
 		return this->Error;
 	}
+	//用于显示图片，需要每帧调用，调用顺序决定图层
 	void draw();
 private:
 	double x;

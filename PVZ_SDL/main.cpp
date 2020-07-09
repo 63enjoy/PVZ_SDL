@@ -39,7 +39,11 @@ int main(int argc,char* argv[])
 	PVZ_ImageFile* imageFile = new PVZ_ImageFile("resource/images/background1.png",Renderer);
 	
 	PVZ_Image* image = new PVZ_Image(Renderer, imageFile, nullptr);
+	PVZ_Image* image1 = new PVZ_Image(Renderer, imageFile, image);
+	image->setXY(10, 10);
+	image1->setXY(30, 30);
 	image->show();
+	image1->show();
 	bool isQuit=false;
 	SDL_Event PVZevent;
 	while (!isQuit)//消息循环
@@ -56,10 +60,14 @@ int main(int argc,char* argv[])
 			}	
 		}
 		image->draw();
+		image1->draw();
 		SDL_RenderPresent(Renderer);
 		
 	}
-
+	delete image;
+	delete image1;
+	delete imageFile;
+	
 	SDL_DestroyRenderer(Renderer);
 	SDL_DestroyWindow(MainWindow);
 	SDL_Quit();
